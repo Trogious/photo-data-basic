@@ -4,6 +4,7 @@
   "type": "module",
   "description": "Get basic image data like dimensions and few exif parameters relevant for photography.",
   "main": "index.mjs",
+  "repository.url": "https://github.com/Trogious/photo-data-basic",
   "scripts": {
     "test": "node ./test.mjs"
   },
