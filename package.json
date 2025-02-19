@@ -1,0 +1,22 @@
+{
+  "name": "photo-data-basic",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Get basic image data like dimensions and few exif parameters relevant for photography.",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "node ./test.mjs"
+  },
+  "keywords": [
+    "image",
+    "exif",
+    "photo",
+    "photography"
+  ],
+  "author": "Tomasz Welman",
+  "license": "ISC",
+  "dependencies": {
+    "exifr": "^7.1.3",
+    "image-size": "^1.2.0"
+  }
+}
