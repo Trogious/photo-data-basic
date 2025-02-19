@@ -15,9 +15,9 @@ jobs:
         id: execute_test
         run: |
           TAG_NAME=`echo $GITHUB_REF | cut -d / -f3`
-          echo "{tag_name}={$TAG_NAME}" >> $GITHUB_OUTPUT
-          VERSION=`echo $TAG_NAME | cut -c2-`
-          echo "{version_for_setup}={$VERSION}" >> $GITHUB_OUTPUT
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+          VERSION=`echo $TAG_NAME | cut -c1-`
+          echo "version_for_setup=$VERSION" >> $GITHUB_OUTPUT
           echo "tag: $TAG_NAME  version: $VERSION"
       - name: test outputs
         run: |
