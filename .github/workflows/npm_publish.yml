@@ -15,8 +15,8 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: env TAG_NAME=`echo $GITHUB_REF | cut -d / -f3` node -e 'process.stdin.on("data",(c)=>{p=JSON.parse(c.toString("utf8"));p.version=process.env.TAG_NAME;process.stdout.write(JSON.stringify(p))})' < ./package.json
-      - run: env TAG_NAME=`echo $GITHUB_REF echo "$TAG_NAME"
+      - run: env TAG_NAME=`echo $GITHUB_REF` | cut -d / -f3` node -e 'process.stdin.on("data",(c)=>{p=JSON.parse(c.toString("utf8"));p.version=process.env.TAG_NAME;process.stdout.write(JSON.stringify(p))})' < ./package.json
+      - run: env TAG_NAME=`echo $GITHUB_REF` echo "$TAG_NAME"
       - run: rm -f ./test* ./inspect.mjs
       - run: npm ci
     #   - run: npm publish --provenance --access public
