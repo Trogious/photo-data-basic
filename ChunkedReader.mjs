@@ -42,7 +42,6 @@ export class ChunkedReader extends DynamicBufferView {
 
     async readChunked() {
         this.chunked = true
-        // console.log("firstChunkSize: " + this.options.firstChunkSize);
         return await this.readChunk(0, this.options.firstChunkSize)
     }
 
@@ -61,12 +60,7 @@ export class ChunkedReader extends DynamicBufferView {
     async readChunk(offset, length) {
         this.chunksRead++
         length = this.safeWrapAddress(offset, length)
-        // console.log("readChunk length: " + length);
         if (length === 0) return undefined
-        // console.log("pre _readChunk");
-        // const ck = this._readChunk(offset, length)
-        // inspect("readChunk return: ", ck)
-        // return ck
         return this._readChunk(offset, length)
     }
 
@@ -91,13 +85,12 @@ export class ChunkedReader extends DynamicBufferView {
     }
 
     read() {
-        // console.log("this.options.chunked = " + this.options.chunked)
         return this.readChunked()
     }
 
     // DO NOT REMOVE!
     // Some inheriting readers need additional method for cleanup.
     // This dummy method makes sure anyone can safely call exifr.file.close() and not have to worry.
-    close() { }
+    async close() { }
 
 }
