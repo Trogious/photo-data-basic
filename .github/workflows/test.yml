@@ -27,4 +27,10 @@ jobs:
         run: |
           npm ci
           npm test
-          
+        env:
+          PDB_URL_HTTP: ${{ secrets.PDB_URL_HTTP }}
+          PDB_URL_S3_PUBLIC: ${{ secrets.PDB_URL_S3_PUBLIC }}
+          PDB_URL_S3_PRIVATE: ${{ secrets.PDB_URL_S3_PRIVATE }}
+          PDB_URL_S3_REGION: ${{ secrets.PDB_URL_S3_REGION }}
+          PDB_URL_S3_PRIVATE_ACCESS_KEY_ID: ${{ secrets.PDB_URL_S3_PRIVATE_ACCESS_KEY_ID }}
+          PDB_URL_S3_PRIVATE_SECRET_KEY: ${{ secrets.PDB_URL_S3_PRIVATE_SECRET_KEY }}
