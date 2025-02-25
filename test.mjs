@@ -30,21 +30,21 @@ const URLS = [
 ];
 
 const EXPECTED = {
-    "Make": "SONY", "Model": "ILCE-7RM5", "FNumber": 6.3, "ISO": 2000, "DateTimeOriginal": "2024-04-30T07:04:59.000Z",
-    "CreateDate": "2024-04-30T07:04:59.000Z", "ShutterSpeedValue": 9.321928, "FocalLength": 400, "FocalLengthIn35mmFormat": 400,
+    "Make": "SONY", "Model": "ILCE-7RM5", "FNumber": 6.3, "ISO": 2000, "DateTimeOriginal": "2024-04-30T08:04:59.000Z",
+    "CreateDate": "2024-04-30T08:04:59.000Z", "ShutterSpeedValue": 9.321928, "FocalLength": 400, "FocalLengthIn35mmFormat": 400,
     "LensModel": "FE 200-600mm F5.6-6.3 G OSS", "width": 590, "height": 1049
 };
 
 const assertEqualFloat = (actual, expected, message) => assert.ok(Math.abs(actual - expected) < 0.000001, message)
 
+
 const assertEqualData = (data) => {
     Object.keys(EXPECTED).map(prop => {
         if (data[prop] instanceof Date) {
             const actual = data[prop].toLocaleString("en-US", { timeZone: data["OffsetTimeOriginal"] });
-            const expected = new Date(EXPECTED[prop].replace("Z", "+00:00")).toLocaleString("en-US", { timeZone: data["OffsetTimeOriginal"] });
+            const expected = new Date(EXPECTED[prop].replace("Z", "Z")).toLocaleString("en-US");
             console.log("actual " + actual);
             console.log("expect " + expected);
-
 
             assert.deepEqual(actual, expected, prop)
         } else {
