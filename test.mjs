@@ -64,10 +64,11 @@ const fetchPhotoData = async (u) => {
 
 
 test('test exif & dimensions', { concurrency: true }, async t => {
-    const cases = URLS.map(u => {
-        t.test(u.url, () => {
+    const cases = []
+    URLS.map(u => {
+        cases.push(t.test(u.url, () => {
             fetchPhotoData(u).then(data => assertEqualData(data));
-        });
+        }))
     });
 
     await Promise.allSettled(cases);
