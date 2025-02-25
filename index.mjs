@@ -96,11 +96,8 @@ export const getPhotoData = async (imageUrl, options) => {
     data.width = props.dimensions.width
     data.height = props.dimensions.height
 
-    // const d = data.DateTimeOriginal
-    // // const d = new Date();
-    // console.log("new Date(Date.UTC(%d, %d, %d, %d, %d, %d))", d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
-
-    // console.log(props.exif);
+    const d = data.DateTimeOriginal
+    console.log("new Date(Date.UTC(%d, %d, %d, %d, %d, %d))", d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
 
     if (data.Make !== undefined && data.Model !== undefined)
         data.PDBModel = getModelName(data.Make, data.Model)
