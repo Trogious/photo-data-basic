@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "concurrently --kill-others-on-fail --prefix none npm:test:*",
-    "test:units": "node --test ./test.mjs"
+    "test:units": "node --test ./test/test.mjs"
   },
   "keywords": [
     "image",

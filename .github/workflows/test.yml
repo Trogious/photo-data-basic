@@ -26,6 +26,7 @@ jobs:
       - name: unit tests
         run: |
           npm ci
+          mv -vf test/jpg.js node_modules/image-size/dist/types/  # temporary until https://github.com/image-size/image-size/pull/424 gets into a release on npm
           npm test
         env:
           PDB_URL_HTTP: ${{ secrets.PDB_URL_HTTP }}

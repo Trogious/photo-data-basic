@@ -1,7 +1,9 @@
-import exifr from 'exifr';
-const { parse } = exifr;
-import { imageSize } from 'image-size';
+import exifr from 'exifr'
+const { parse } = exifr
+import { imageSize } from 'image-size'
+import { performance } from 'perf_hooks'
 import dynamicImport from './dynamicImport.mjs'
+import { getAspectRatio, getAspectRatioApprox, getModelName, getShutterSpeed } from './utils.mjs'
 
 
 const setUpReaders = async (url, options) => {
@@ -28,6 +30,7 @@ const setUpReaders = async (url, options) => {
 }
 
 const getImageProperties = async (url, options) => {
+    const timeStart = performance.now()
     const { fetcher, chunkLimit } = await setUpReaders(url, options)
 
     try {
@@ -69,23 +72,44 @@ const getImageProperties = async (url, options) => {
         }
     }
     await fetcher.close()
+    const duration = performance.now() - timeStart
 
-    return { exif, dimensions, iterations };
+    return { exif, dimensions, iterations, duration }
 }
+
+
 
 export const getPhotoData = async (imageUrl, options) => {
     const props = await getImageProperties(imageUrl, options);
     if (props.iterations > 1)
         console.debug("took more than 1 chunk to fetch enough data, chunks read: " + props.iterations)
-    const exifProps = ["Make", "Model", "FNumber", "ISO", "DateTimeOriginal", "CreateDate", "OffsetTime",
-        "OffsetTimeOriginal", "ShutterSpeedValue", "FocalLength", "FocalLengthIn35mmFormat", "LensModel"]
+    console.debug(`getting image properties took ${props.duration} ms`);
+    // exifTags definitions here: https://exiftool.org/TagNames/EXIF.html
+    const exifTags = ["Make", "Model", "ExposureTime", "FNumber", "ISO", "DateTimeOriginal", "OffsetTimeOriginal",
+        "ShutterSpeedValue", "FocalLength", "FocalLengthIn35mmFormat", "LensModel"]
     const data = {}
-    exifProps.map((prop) => {
+    exifTags.map((prop) => {
         if (prop in props.exif) {
             data[prop] = props.exif[prop]
         }
     })
     data.width = props.dimensions.width
     data.height = props.dimensions.height
+
+    // const d = data.DateTimeOriginal
+    // // const d = new Date();
+    // console.log("new Date(Date.UTC(%d, %d, %d, %d, %d, %d))", d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
+
+    // console.log(props.exif);
+
+    if (data.Make !== undefined && data.Model !== undefined)
+        data.PDBModel = getModelName(data.Make, data.Model)
+    if (data.ExposureTime !== undefined)
+        data.PDBShutterSpeed = getShutterSpeed(data.ExposureTime)
+    data.PDBAspectRatio = getAspectRatio(data.width, data.height)
+    data.PDBAspectRatioApprox = getAspectRatioApprox(data.width, data.height)
+
+    console.log(data);
+
     return data;
 }

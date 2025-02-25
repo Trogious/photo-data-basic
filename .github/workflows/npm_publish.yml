@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: cleanup for release
         run: |
-          rm -f ./test* ./inspect.mjs
+          rm -f ./test
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v4
         with:
