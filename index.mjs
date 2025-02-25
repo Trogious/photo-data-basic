@@ -77,8 +77,8 @@ export const getPhotoData = async (imageUrl, options) => {
     const props = await getImageProperties(imageUrl, options);
     if (props.iterations > 1)
         console.debug("took more than 1 chunk to fetch enough data, chunks read: " + props.iterations)
-    const exifProps = ["Make", "Model", "FNumber", "ISO", "DateTimeOriginal", "CreateDate",
-        "ShutterSpeedValue", "FocalLength", "FocalLengthIn35mmFormat", "LensModel"]
+    const exifProps = ["Make", "Model", "FNumber", "ISO", "DateTimeOriginal", "CreateDate", "OffsetTime",
+        "OffsetTimeOriginal", "ShutterSpeedValue", "FocalLength", "FocalLengthIn35mmFormat", "LensModel"]
     const data = {}
     exifProps.map((prop) => {
         if (prop in props.exif) {

@@ -40,7 +40,7 @@ const assertEqualFloat = (actual, expected, message) => assert.ok(Math.abs(actua
 const assertEqualData = (data) => {
     Object.keys(EXPECTED).map(prop => {
         if (EXPECTED[prop] instanceof Date) {
-            assert.deepEqual(data[prop].getTime(), EXPECTED[prop].getTime(), prop)
+            assert.deepEqual(data[prop].toUTCString(), EXPECTED[prop].toUTCString(), prop)
         } else {
             const float = Number.parseFloat(data[prop]);
             (Number.isNaN(float) || Number.isInteger(float)) ? assert.deepEqual(data[prop], EXPECTED[prop], prop) : assertEqualFloat(data[prop], EXPECTED[prop], prop)
