@@ -1,6 +1,6 @@
 import { getPhotoData } from "./index.mjs";
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
+import { describe, it } from 'node:test';
 import 'dotenv/config';
 
 
@@ -62,14 +62,6 @@ const fetchPhotoData = async (u) => {
     return await getPhotoData(u.url, config ? { s3config: config } : undefined)
 }
 
-
-test('test exif & dimensions', { concurrency: true }, async t => {
-    const cases = []
-    URLS.map(u => {
-        cases.push(t.test(u.url, () => {
-            fetchPhotoData(u).then(data => assertEqualData(data));
-        }))
-    });
-
-    await Promise.allSettled(cases);
+describe('image', () => {
+    it("should have dimensions and exif", () => URLS.map(u => fetchPhotoData(u).then(data => assertEqualData(data))))
 });
