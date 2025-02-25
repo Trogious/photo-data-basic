@@ -40,8 +40,8 @@ const assertEqualFloat = (actual, expected, message) => assert.ok(Math.abs(actua
 const assertEqualData = (data) => {
     Object.keys(EXPECTED).map(prop => {
         if (data[prop] instanceof Date) {
-            const actual = data[prop].toLocaleString("en-US", { timeZone: "UTC" });
-            const expected = new Date(EXPECTED[prop].replace("Z", "+00:00")).toLocaleString("en-US", { timeZone: "UTC" });
+            const actual = data[prop].toLocaleString("en-US", { timeZone: data["OffsetTimeOriginal"] });
+            const expected = new Date(EXPECTED[prop].replace("Z", "+00:00")).toLocaleString("en-US", { timeZone: data["OffsetTimeOriginal"] });
             console.log("actual " + actual);
             console.log("expect " + expected);
 
