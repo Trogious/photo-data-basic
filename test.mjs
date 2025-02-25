@@ -30,8 +30,8 @@ const URLS = [
 ];
 
 const EXPECTED = {
-    "Make": "SONY", "Model": "ILCE-7RM5", "FNumber": 6.3, "ISO": 2000, "DateTimeOriginal": new Date("2024-04-30T07:04:59.000Z"),
-    "CreateDate": new Date("2024-04-30T07:04:59.000Z"), "ShutterSpeedValue": 9.321928, "FocalLength": 400, "FocalLengthIn35mmFormat": 400,
+    "Make": "SONY", "Model": "ILCE-7RM5", "FNumber": 6.3, "ISO": 2000, "DateTimeOriginal": "2024-04-30T07:04:59.000Z",
+    "CreateDate": "2024-04-30T07:04:59.000Z", "ShutterSpeedValue": 9.321928, "FocalLength": 400, "FocalLengthIn35mmFormat": 400,
     "LensModel": "FE 200-600mm F5.6-6.3 G OSS", "width": 590, "height": 1049
 };
 
@@ -39,8 +39,8 @@ const assertEqualFloat = (actual, expected, message) => assert.ok(Math.abs(actua
 
 const assertEqualData = (data) => {
     Object.keys(EXPECTED).map(prop => {
-        if (EXPECTED[prop] instanceof Date) {
-            assert.deepEqual(data[prop].toUTCString(), EXPECTED[prop].toUTCString(), prop)
+        if (data[prop] instanceof Date) {
+            assert.deepEqual(data[prop].toISOString(), EXPECTED[prop], prop)
         } else {
             const float = Number.parseFloat(data[prop]);
             (Number.isNaN(float) || Number.isInteger(float)) ? assert.deepEqual(data[prop], EXPECTED[prop], prop) : assertEqualFloat(data[prop], EXPECTED[prop], prop)
