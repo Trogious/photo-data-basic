@@ -28,6 +28,7 @@ jobs:
           ls -a
           npm ci
           mv -vf test/jpg.js node_modules/image-size/dist/types/  # temporary until https://github.com/image-size/image-size/pull/424 gets into a release on npm
+          mv -vf test/full.umd.js node_modules/exifr/dist/  # temporary until https://github.com/MikeKovarik/exifr/pull/132 lands on npm
           timedatectl status
           npm test
         env:

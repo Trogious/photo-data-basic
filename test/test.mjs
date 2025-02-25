@@ -54,7 +54,7 @@ const assertEqualData = (data) => {
             log("actual2 " + data[prop].getTime());
             log("expect2 " + EXPECTED[prop].getTime());
 
-            assert.deepEqual(actual, expected, prop)
+            assert.deepEqual(data[prop].getTime(), EXPECTED[prop].getTime(), prop)
         } else {
             const float = Number.parseFloat(data[prop]);
             (Number.isNaN(float) || Number.isInteger(float)) ? assert.deepEqual(data[prop], EXPECTED[prop], prop) : assertEqualFloat(data[prop], EXPECTED[prop], prop)
