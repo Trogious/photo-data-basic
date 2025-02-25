@@ -1,3 +1,5 @@
 node_modules
 *.sh
 **/.env
+exifr
+image-size

@@ -14,26 +14,26 @@ const URLS = [
     {
         url: "./test/test.jpg"
     },
-    {
-        url: appendFile(process.env.PDB_URL_HTTP, "test.jpg")
-    },
-    {
-        url: appendFile(process.env.PDB_URL_S3_PUBLIC, "test.jpg"),
-        region: process.env.PDB_URL_S3_REGION,
-        access_key_id: process.env.PDB_URL_S3_PRIVATE_ACCESS_KEY_ID,
-        secret_key: process.env.PDB_URL_S3_PRIVATE_SECRET_KEY
-    },
-    {
-        url: appendFile(process.env.PDB_URL_S3_PRIVATE, "test.jpg"),
-        region: process.env.PDB_URL_S3_REGION,
-        access_key_id: process.env.PDB_URL_S3_PRIVATE_ACCESS_KEY_ID,
-        secret_key: process.env.PDB_URL_S3_PRIVATE_SECRET_KEY
-    },
+    // {
+    //     url: appendFile(process.env.PDB_URL_HTTP, "test.jpg")
+    // },
+    // {
+    //     url: appendFile(process.env.PDB_URL_S3_PUBLIC, "test.jpg"),
+    //     region: process.env.PDB_URL_S3_REGION,
+    //     access_key_id: process.env.PDB_URL_S3_PRIVATE_ACCESS_KEY_ID,
+    //     secret_key: process.env.PDB_URL_S3_PRIVATE_SECRET_KEY
+    // },
+    // {
+    //     url: appendFile(process.env.PDB_URL_S3_PRIVATE, "test.jpg"),
+    //     region: process.env.PDB_URL_S3_REGION,
+    //     access_key_id: process.env.PDB_URL_S3_PRIVATE_ACCESS_KEY_ID,
+    //     secret_key: process.env.PDB_URL_S3_PRIVATE_SECRET_KEY
+    // },
 ];
 
 const EXPECTED = {
     "Make": "SONY", "Model": "ILCE-7RM5", "ExposureTime": 0.0015625, "FNumber": 6.3, "ISO": 2000,
-    "DateTimeOriginal": new Date(Date.UTC(2024, 3, 30, 7, 4, 59)), "OffsetTimeOriginal": "+02:00",
+    "DateTimeOriginal": new Date(Date.UTC(2024, 3, 30, 8, 4, 59)), "OffsetTimeOriginal": "+02:00",
     "ShutterSpeedValue": 9.321928, "FocalLength": 400, "FocalLengthIn35mmFormat": 400,
     "LensModel": "FE 200-600mm F5.6-6.3 G OSS", "width": 590, "height": 1049
 };

@@ -1,0 +1,1 @@
+../exifr/dist/full.esm.mjs

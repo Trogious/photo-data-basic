@@ -1,5 +1,6 @@
-import exifr from 'exifr'
-const { parse } = exifr
+// import exifr from 'exifr'
+// const { parse } = exifr
+import { parse } from './full.esm.mjs'
 import { imageSize } from 'image-size'
 import { performance } from 'perf_hooks'
 import dynamicImport from './dynamicImport.mjs'
@@ -97,7 +98,7 @@ export const getPhotoData = async (imageUrl, options) => {
     data.height = props.dimensions.height
 
     const d = data.DateTimeOriginal
-    console.log("new Date(Date.UTC(%d, %d, %d, %d, %d, %d))", d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
+    // console.log("new Date(Date.UTC(%d, %d, %d, %d, %d, %d))", d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
 
     if (data.Make !== undefined && data.Model !== undefined)
         data.PDBModel = getModelName(data.Make, data.Model)
