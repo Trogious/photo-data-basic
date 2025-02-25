@@ -62,6 +62,9 @@ const fetchPhotoData = async (u) => {
     return await getPhotoData(u.url, config ? { s3config: config } : undefined)
 }
 
-describe('image', () => {
-    it("should have dimensions and exif", () => URLS.map(u => fetchPhotoData(u).then(data => assertEqualData(data))))
+describe('image', async () => {
+    it("should have dimensions and exif", async () => URLS.map(async (u) => {
+        const data = await fetchPhotoData(u);
+        assertEqualData(data);
+    }))
 });
