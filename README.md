@@ -15,27 +15,7 @@ import { getPhotoData } from "photo-data-basic";
 const data = await getPhotoData("./test.jpg")
 console.log(data);
 ```
-```js
-{
-  Make: 'SONY',
-  Model: 'ILCE-7RM5',
-  ExposureTime: 0.0015625,
-  FNumber: 6.3,
-  ISO: 2000,
-  DateTimeOriginal: `2024-04-30T08:04:59.000Z`,
-  OffsetTimeOriginal: '+02:00',
-  ShutterSpeedValue: 9.321928,
-  FocalLength: 400,
-  FocalLengthIn35mmFormat: 400,
-  LensModel: 'FE 200-600mm F5.6-6.3 G OSS',
-  width: 144,
-  height: 256,
-  PDBModel: 'SONY α7R V',
-  PDBShutterSpeed: '1/640',
-  PDBAspectRatio: [ 9, 16 ],
-  PDBAspectRatioApprox: [ 9, 16 ]
-}
-```
+<img src="test/output.png"/>
 
 ## Supported protocols
 The `getPhotoData` function can handle these types inputs:
